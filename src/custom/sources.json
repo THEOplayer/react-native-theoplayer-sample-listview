@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Test video",
+    "os": ["android", "web"],
+    "source": {
+      "sources": [
+        {
+          "src": "https://cdn.theoplayer.com/video/dash/test_video/test_video.mpd",
+          "type": "application/dash+xml"
+        }
+      ],
+      "poster": "https://cdn.theoplayer.com/video/dash/test_video/poster.png"
+    }
+  },
+  {
+    "name": "Birds",
+    "os": [
+      "ios",
+      "android"
+    ],
+    "source": {
+      "sources": {
+        "src": "https://cdn.theoplayer.com/video/birds/index.m3u8",
+        "type": "application/x-mpegurl"
+      },
+      "poster": "https://cdn.theoplayer.com/video/birds/poster.png"
+    }
+  },
+  {
+    "name": "Mojito",
+    "os": [
+      "ios",
+      "android"
+    ],
+    "source": {
+      "sources": {
+        "src": "https://cdn.theoplayer.com/video/mojito/main.m3u8",
+        "type": "application/x-mpegurl"
+      },
+      "poster": "https://cdn.theoplayer.com/video/mojito/poster.png"
+    }
+  },
+  {
+    "name": "Frame Counter",
+    "os": [
+      "ios",
+      "android"
+    ],
+    "source": {
+      "sources": {
+        "src": "https://cdn.theoplayer.com/video/framecounter/framecounter_25fps/index.m3u8"
+      },
+      "poster": "https://cdn.theoplayer.com/video/framecounter/framecounter_25fps/poster.png"
+    }
+  },
+  {
+    "name": "Adult Swim 2",
+    "os": [
+      "ios"
+    ],
+    "source": {
+      "sources": {
+        "src": "https://cdn.theoplayer.com/video/adultswim2/clip.m3u8",
+        "type": "application/x-mpegurl"
+      },
+      "poster": "https://cdn.theoplayer.com/react-native-theoplayer/test_streams/ventureBros2/poster.png"
+    }
+  },
+  {
+    "name": "Big Buck Bunny",
+    "os": [
+      "ios",
+      "android"
+    ],
+    "source": {
+      "sources": {
+        "src": "https://cdn.theoplayer.com/video/big_buck_bunny/bbb_short.m3u8",
+        "type": "application/x-mpegurl"
+      },
+      "poster": "https://cdn.theoplayer.com/video/big_buck_bunny/poster.png"
+    }
+  },
+  {
+    "name": "Birds",
+    "os": [
+      "ios",
+      "android"
+    ],
+    "source": {
+      "sources": {
+        "src": "https://cdn.theoplayer.com/video/birds/index.m3u8",
+        "type": "application/x-mpegurl"
+      },
+      "poster": "https://cdn.theoplayer.com/video/birds/poster.png"
+    }
+  },
+  {
+    "name": "Frame Counter",
+    "os": [
+      "ios",
+      "android"
+    ],
+    "source": {
+      "sources": {
+        "src": "https://cdn.theoplayer.com/video/framecounter/framecounter_25fps/index.m3u8"
+      },
+      "poster": "https://cdn.theoplayer.com/video/framecounter/framecounter_25fps/poster.png"
+    }
+  }
+]

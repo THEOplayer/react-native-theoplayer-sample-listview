@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-theoplayer/android/src/main/java/com/theoplayer/audio/AudioFocusManager.kt b/node_modules/react-native-theoplayer/android/src/main/java/com/theoplayer/audio/AudioFocusManager.kt
+index 4f80144..30ac2fe 100644
+--- a/node_modules/react-native-theoplayer/android/src/main/java/com/theoplayer/audio/AudioFocusManager.kt
++++ b/node_modules/react-native-theoplayer/android/src/main/java/com/theoplayer/audio/AudioFocusManager.kt
+@@ -124,7 +124,7 @@ class AudioFocusManager(
+       // We should only resume if playback was interrupted
+       resumeOnFocusGain = transient && !(player?.isPaused ?: true)
+     }
+-    player?.pause()
++//    player?.pause()
+   }
+ 
+   private fun fromAudioFocusChange(focusChange: Int?): String {
