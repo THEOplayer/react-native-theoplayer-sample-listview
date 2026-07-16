@@ -1,4 +1,4 @@
-import { SourceDescription, THEOplayer } from "react-native-theoplayer";
+import { SourceDescription } from "react-native-theoplayer";
 
 export interface PlayListData {
     index: number;

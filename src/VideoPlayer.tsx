@@ -20,7 +20,6 @@ const playerConfig: PlayerConfiguration = {
     // Get your THEOplayer license from https://portal.theoplayer.com/
     // Without a license, only demo sources hosted on '*.theoplayer.com' domains can be played.
     license: undefined,
-    chromeless: true,
     libraryLocation: 'theoplayer',
     cast: {
         chromecast: {
@@ -45,7 +44,7 @@ const PLAYER_COUNT_WARNING = 6;
 
 export const VideoPlayer = (props: VideoPlayerProps) => {
     const playerRef = useRef<THEOplayer | undefined>(undefined);
-    const playerId = useRef<number>();
+    const playerId = useRef<number | undefined>(undefined);
 
     useEffect(() => {
         const player = playerRef.current;
@@ -120,9 +119,14 @@ export const VideoPlayer = (props: VideoPlayerProps) => {
             <UiContainer
                 theme={DEMO_THEME}
                 player={playerRef.current}
-                top={<PlayerOverlay data={props.playlistData} />}
             />
         )}
+        {/* Render the title overlay outside UiContainer so it is always visible and not affected
+            by the UI fade-in/fade-out animation on touch. */}
+        <PlayerOverlay
+            data={props.playlistData}
+            style={{position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2}}
+        />
     </THEOplayerView>
 };
 

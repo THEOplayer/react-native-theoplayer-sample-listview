@@ -1,19 +1,34 @@
 # React Native THEOplayer Sample List View
 
-![](./doc/logo-react-native.png) ![](./doc/logo-theo.png)
+<img src="./doc/logo-optiview-dark.png#gh-dark-mode-only" height="120" alt="OptiView logo"><img src="./doc/logo-optiview-light.png#gh-light-mode-only" height="120" alt="OptiView logo"><img src="./doc/logo-react-native.png" height="120" alt="React Native logo">
 
 ## License
 
 This projects falls under the license as defined in https://github.com/THEOplayer/license-and-disclaimer.
 
+## Building the app
+
+### Android
+
+```bash
+npm install
+npm run android
+```
+
+### iOS
+
+```bash
+npm install
+cd ios && pod install && cd ..
+npm run ios
+```
+
 ## Overview
 
 This sample app showcases how to use [`react-native-theoplayer`](https://github.com/THEOplayer/react-native-theoplayer) to create a vertically scrolling list of video players. 
-It leverages the [`@shopify/flash-list`](https://www.npmjs.com/package/@shopify/flash-list) component, 
-which enhances the functionality of [`recyclerlistview`](https://www.npmjs.com/package/recyclerlistview) for efficient list rendering.
+It leverages the [`@shopify/flash-list`](https://www.npmjs.com/package/@shopify/flash-list) component for efficient list rendering with built-in view recycling.
 
-The demo highlights key elements essential for delivering an optimized user experience with seamless scrolling and
-rapid playback startup.
+The demo highlights key elements essential for delivering an optimized user experience with seamless scrolling and rapid playback startup.
 
 ![](./doc/demo.gif)
 
@@ -51,7 +66,7 @@ automatically adjust to an appropriate quality level.
 
 ## App Design
 
-The demo features a list of 50 items, reusing a limited set of DASH and HLS stream assets.
+The demo features a list of 100 items, reusing a limited set of DASH and HLS stream assets.
 
 A `PlayerListContentProvider` serves as the central data source, tracking all list items and their metadata, along with 
 the visibility status of each item. It also offers convenient methods for `FlashList` to toggle the visibility of each player.
@@ -62,5 +77,5 @@ creating a built-in **bookmarking** feature.
 
 ## Known Limitations
 
-- On Android, the audio focus manager currently pauses play-out whenever another player start playing. Because we allow multiple players to stream in parallel, we disabled this featured for this demo.
-- On iOS, enabling IMA client-side ads would impact performance slightly when setting a source. This results in scrolling not being smooth.
+- On Android, the audio focus manager pauses play-out whenever another player gains audio focus. Because we allow multiple players to stream in parallel, all players are muted in this demo — the audio focus manager skips pausing muted players.
+- On iOS, enabling IMA client-side ads may impact performance slightly when setting a source. This results in scrolling not being smooth.

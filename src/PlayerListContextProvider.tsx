@@ -1,6 +1,6 @@
 import { PlayListData } from "./PlayListData";
 import * as React from "react";
-import { ReactNode, useContext, useState } from "react";
+import { ReactNode, useCallback, useContext, useMemo, useState } from "react";
 import ALL_SOURCES from "./custom/sources.json";
 import { Source } from "./custom/Source";
 import { Platform } from "react-native";
@@ -43,21 +43,32 @@ interface PlayerListContextProviderProps {
  */
 export const PlayerListContextProvider = ({children}: PlayerListContextProviderProps) => {
     const [viewable, setViewable] = useState<number[]>([]);
-    const contextValue = {
-        items: generateMockPlaylist(100),
-        viewable,
-        isViewable: (index: number) => viewable.includes(index),
-        setViewable: (index: number | null, isViewable: boolean) => {
-            if (index === null) {
-                return;
-            }
-            if (isViewable) {
-                setViewable(viewable => Array.from(new Set([...viewable, index])));
-            } else {
-                setViewable(viewable => viewable.filter(i => i !== index));
-            }
+
+    // The playlist is static for the lifetime of the app, so memoize it once.
+    // This keeps the `data` prop reference stable so FlashList v2 does not re-layout
+    // the entire list on every visibility change.
+    const items = useMemo(() => generateMockPlaylist(100), []);
+
+    const isViewable = useCallback((index: number) => viewable.includes(index), [viewable]);
+
+    const setViewableCallback = useCallback((index: number | null, isViewable: boolean) => {
+        if (index === null) {
+            return;
         }
-    };
+        if (isViewable) {
+            setViewable(viewable => Array.from(new Set([...viewable, index])));
+        } else {
+            setViewable(viewable => viewable.filter(i => i !== index));
+        }
+    }, []);
+
+    const contextValue = useMemo(() => ({
+        items,
+        viewable,
+        isViewable,
+        setViewable: setViewableCallback,
+    }), [items, viewable, isViewable, setViewableCallback]);
+
     return <PlayerDataContext.Provider value={contextValue}>
         {children}
         </PlayerDataContext.Provider>

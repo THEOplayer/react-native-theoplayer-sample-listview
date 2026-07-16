@@ -10,7 +10,7 @@ export interface PlayerOverlayProps {
 export const PlayerOverlay = (props: PlayerOverlayProps) => {
     const { data } = props;
     return (
-        <View style={[{margin: 15}, props.style]}>
+        <View pointerEvents="box-none" style={[{margin: 15}, props.style]}>
             <Text style={{backgroundColor: 'transparent', color: 'white', fontSize: 18}}>{`${data.index}: ${data.name}`}</Text>
         </View>
     );

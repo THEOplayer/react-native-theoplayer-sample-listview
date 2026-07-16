@@ -1,4 +1,4 @@
-package com.theoplayer.demo.cast
+package com.rntheodemo.cast
 
 import android.content.Context
 import com.google.android.gms.cast.framework.CastOptions
