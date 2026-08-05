@@ -8,13 +8,18 @@ import {
 } from "react-native-theoplayer";
 import { StyleProp, ViewStyle } from "react-native";
 import * as React from "react";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PlayListData } from "./PlayListData";
 import { DEFAULT_THEOPLAYER_THEME, UiContainer } from "@theoplayer/react-native-ui";
 import { PlayerOverlay } from "./PlayerOverlay";
 
-const DEMO_THEME = DEFAULT_THEOPLAYER_THEME;
-DEMO_THEME.colors.uiBackground = 'transparent';
+const DEMO_THEME = {
+    ...DEFAULT_THEOPLAYER_THEME,
+    colors: {
+        ...DEFAULT_THEOPLAYER_THEME.colors,
+        uiBackground: 'transparent',
+    },
+};
 
 const playerConfig: PlayerConfiguration = {
     // Get your THEOplayer license from https://portal.theoplayer.com/
@@ -43,11 +48,10 @@ let playerID = 0;
 const PLAYER_COUNT_WARNING = 6;
 
 export const VideoPlayer = (props: VideoPlayerProps) => {
-    const playerRef = useRef<THEOplayer | undefined>(undefined);
+    const [player, setPlayer] = useState<THEOplayer | undefined>(undefined);
     const playerId = useRef<number | undefined>(undefined);
 
     useEffect(() => {
-        const player = playerRef.current;
         if (!player) {
             return;
         }
@@ -67,10 +71,10 @@ export const VideoPlayer = (props: VideoPlayerProps) => {
                 player.pause();
             }
         }
-    }, [props.isViewable, props.source]);
+    }, [player, props.isViewable, props.source]);
 
-    const onPlayerReady = async (player: THEOplayer) => {
-        playerRef.current = player;
+    const onPlayerReady = (player: THEOplayer) => {
+        setPlayer(player);
         playerId.current = playerID++;
 
         /**
@@ -90,10 +94,6 @@ export const VideoPlayer = (props: VideoPlayerProps) => {
         player.muted = true;
         // player.preload = 'auto';
 
-        // Start auto-playing once the player becomes visible.
-        player.autoplay = props.isViewable;
-        player.source = props.source;
-
         /**
          * Choose ABR strategy type 'performance'. The player will start with the lowest quality, which means playback
          * can start earlier. Optionally filter the target qualities first to make sure all resolutions that are
@@ -111,14 +111,15 @@ export const VideoPlayer = (props: VideoPlayerProps) => {
     };
 
     const onPlayerDestroy = useCallback(() => {
+        setPlayer(undefined);
         console.log('DEMO', 'Player destroyed');
     }, []);
 
     return <THEOplayerView config={playerConfig} onPlayerReady={onPlayerReady} onPlayerDestroy={onPlayerDestroy}>
-        {playerRef.current !== undefined && (
+        {player !== undefined && (
             <UiContainer
                 theme={DEMO_THEME}
-                player={playerRef.current}
+                player={player}
             />
         )}
         {/* Render the title overlay outside UiContainer so it is always visible and not affected

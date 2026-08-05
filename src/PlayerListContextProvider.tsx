@@ -77,7 +77,7 @@ export const PlayerListContextProvider = ({children}: PlayerListContextProviderP
 export const usePlayerListContext = () => {
     const context = useContext(PlayerDataContext);
     if (!context) {
-        throw new Error("usePlayerDataContext must used be inside a PlayerDataContextProvider");
+        throw new Error("usePlayerListContext must be used inside a PlayerListContextProvider");
     }
     return context;
 }
