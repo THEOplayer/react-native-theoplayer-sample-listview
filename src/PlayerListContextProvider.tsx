@@ -5,11 +5,12 @@ import ALL_SOURCES from "./custom/sources.json";
 import { Source } from "./custom/Source";
 import { Platform } from "react-native";
 
+const FAIRPLAY_INTEGRATIONS = new Set(['keyos_buydrm', 'castlabs']);
 const PLATFORM_SOURCES = ALL_SOURCES.filter((source) => source.os.indexOf(Platform.OS) >= 0) as Source[];
 export const SOURCES = Platform.OS === 'ios'
     ? PLATFORM_SOURCES.filter((item) => {
         const sources = item.source.sources;
-        return !Array.isArray(sources) && sources?.contentProtection?.integration === 'keyos_buydrm';
+        return !Array.isArray(sources) && FAIRPLAY_INTEGRATIONS.has(sources?.contentProtection?.integration ?? '');
     })
     : PLATFORM_SOURCES;
 

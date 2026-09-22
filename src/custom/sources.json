@@ -95,11 +95,8 @@
     }
   },
   {
-    "name": "Frame Counter",
-    "os": [
-      "ios",
-      "android"
-    ],
+    "name": "HLS • VOD • KeyOS (FairPlay)",
+    "os": ["ios"],
     "source": {
       "sources": {
         "src": "https://d2jl6e4h8300i8.cloudfront.net/netflix_meridian/4k-19.5!9/keyos-logo/g180-avc_a2.0-vbr-aac-128k/r30/hls-fp/master.m3u8",
@@ -116,6 +113,29 @@
         }
       },
       "poster": "https://cdn.theoplayer.com/video/framecounter/framecounter_25fps/poster.png"
+    }
+  },
+  {
+    "name": "HLS • VOD • CastLabs (FairPlay)",
+    "os": ["ios"],
+    "source": {
+      "sources": {
+        "src": "https://demo.cf.castlabs.com/media/fps/index.m3u8",
+        "type": "application/x-mpegurl",
+        "contentProtection": {
+          "integration": "castlabs",
+          "integrationParameters": {
+            "userId": "purchase",
+            "sessionId": "session",
+            "merchant": "six"
+          },
+          "fairplay": {
+            "licenseAcquisitionURL": "https://lic.staging.drmtoday.com/license-server-fairplay/",
+            "certificateURL": "https://lic.staging.drmtoday.com/license-server-fairplay/cert/"
+          }
+        }
+      },
+      "poster": ""
     }
   }
 ]

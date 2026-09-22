@@ -6,12 +6,20 @@ import { PlayListData } from "./PlayListData";
 import { FlashList, ViewToken } from "@shopify/flash-list";
 import { PlayerListContextProvider, usePlayerListContext } from "./PlayerListContextProvider";
 import { ContentProtectionRegistry } from "react-native-theoplayer";
-import { KeyOSDrmFairplayContentProtectionIntegrationFactory } from "@theoplayer/react-native-drm";
+import {
+    CastLabsFairplayContentProtectionIntegrationFactory,
+    KeyOSDrmFairplayContentProtectionIntegrationFactory
+} from "@theoplayer/react-native-drm";
 
 ContentProtectionRegistry.registerContentProtectionIntegration(
     'keyos_buydrm',
     'fairplay',
     new KeyOSDrmFairplayContentProtectionIntegrationFactory()
+);
+ContentProtectionRegistry.registerContentProtectionIntegration(
+    'castlabs',
+    'fairplay',
+    new CastLabsFairplayContentProtectionIntegrationFactory()
 );
 
 const ITEM_HEIGHT = 250;
