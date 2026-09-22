@@ -5,6 +5,14 @@ import { VideoPlayer } from "./VideoPlayer";
 import { PlayListData } from "./PlayListData";
 import { FlashList, ViewToken } from "@shopify/flash-list";
 import { PlayerListContextProvider, usePlayerListContext } from "./PlayerListContextProvider";
+import { ContentProtectionRegistry } from "react-native-theoplayer";
+import { KeyOSDrmFairplayContentProtectionIntegrationFactory } from "@theoplayer/react-native-drm";
+
+ContentProtectionRegistry.registerContentProtectionIntegration(
+    'keyos_buydrm',
+    'fairplay',
+    new KeyOSDrmFairplayContentProtectionIntegrationFactory()
+);
 
 const ITEM_HEIGHT = 250;
 

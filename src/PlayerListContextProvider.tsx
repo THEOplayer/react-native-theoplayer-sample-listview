@@ -5,7 +5,14 @@ import ALL_SOURCES from "./custom/sources.json";
 import { Source } from "./custom/Source";
 import { Platform } from "react-native";
 
-export const SOURCES = ALL_SOURCES.filter((source) => source.os.indexOf(Platform.OS) >= 0) as Source[];
+const PLATFORM_SOURCES = ALL_SOURCES.filter((source) => source.os.indexOf(Platform.OS) >= 0) as Source[];
+export const SOURCES = Platform.OS === 'ios'
+    ? PLATFORM_SOURCES.filter((item) => {
+        const sources = item.source.sources;
+        return !Array.isArray(sources) && sources?.contentProtection?.integration === 'keyos_buydrm';
+    })
+    : PLATFORM_SOURCES;
+
 /**
  * Create a list of n items.
  */
@@ -41,7 +48,7 @@ interface PlayerListContextProviderProps {
  *  - a list of `viewable` (visible) items;
  *  -
  */
-export const PlayerListContextProvider = ({children}: PlayerListContextProviderProps) => {
+export const PlayerListContextProvider = ({ children }: PlayerListContextProviderProps) => {
     const [viewable, setViewable] = useState<number[]>([]);
 
     // The playlist is static for the lifetime of the app, so memoize it once.
@@ -71,7 +78,7 @@ export const PlayerListContextProvider = ({children}: PlayerListContextProviderP
 
     return <PlayerDataContext.Provider value={contextValue}>
         {children}
-        </PlayerDataContext.Provider>
+    </PlayerDataContext.Provider>
 }
 
 export const usePlayerListContext = () => {

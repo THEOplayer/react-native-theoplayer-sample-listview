@@ -11,13 +11,14 @@
   },
   "dependencies": {
     "@shopify/flash-list": "^2.0.0",
+    "@theoplayer/react-native-drm": "^1.14.0",
     "@theoplayer/react-native-ui": "^0.23.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.0",
     "react-native-google-cast": "^4.8.3",
     "react-native-svg": "^15.12.1",
-    "react-native-theoplayer": "^11.4.0"
+    "react-native-theoplayer": "^11.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

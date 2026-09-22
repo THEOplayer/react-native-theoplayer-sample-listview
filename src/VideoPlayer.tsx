@@ -2,6 +2,7 @@ import {
     ABRStrategyType,
     PlayerConfiguration,
     PlayerEventType,
+    sdkVersions,
     SourceDescription,
     THEOplayer,
     THEOplayerView
@@ -75,6 +76,7 @@ export const VideoPlayer = (props: VideoPlayerProps) => {
 
     const onPlayerReady = (player: THEOplayer) => {
         setPlayer(player);
+        sdkVersions().then((versions) => console.log(`[theoplayer] ${JSON.stringify(versions, null, 4)}`));
         playerId.current = playerID++;
 
         /**
